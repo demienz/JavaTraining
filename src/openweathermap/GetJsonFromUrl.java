@@ -1,4 +1,4 @@
-package dupa;
+package openweathermap;
 
 import java.io.BufferedReader;
 import java.io.IOException;
