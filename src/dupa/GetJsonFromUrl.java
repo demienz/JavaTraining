@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Dupa {
+public class GetJsonFromUrl {
 	//static final String UrltoApi = "http://api.openweathermap.org/data/2.5/weather?q=Lodz,pl&APPID=000b957d41dbc5695b68d9435923cc75";
 
 	public static void main(String[] args) throws IOException, JSONException {
