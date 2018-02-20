@@ -1,5 +1,7 @@
 package openweathermap;
 
+import java.util.Scanner;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,12 +14,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GetJsonFromUrl {
+	private static Scanner scan;
+
 	//static final String UrltoApi = "http://api.openweathermap.org/data/2.5/weather?q=Lodz,pl&APPID=000b957d41dbc5695b68d9435923cc75";
 
 	public static void main(String[] args) throws IOException, JSONException {
-		 JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=Lodz,pl&APPID=000b957d41dbc5695b68d9435923cc75");
-		    System.out.println(json.toString());
-		    System.out.println(json.get("id"));
+		
+		String cityName = setCityName();
+		JSONObject json = readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + ",pl&APPID=000b957d41dbc5695b68d9435923cc75");
+ 
+		//System.out.println(json.toString());
+		//System.out.println(json.get("id"));
+		 
+		JSONObject subJson = (JSONObject) json.get("main");
+		System.out.println("Temperatura w : " + cityName + " to " + kelvinToCelsius((double) subJson.get("temp")));
+			 
 	}
 
 	
@@ -42,7 +53,22 @@ public class GetJsonFromUrl {
 	      is.close();
 	    }
 	  }
+	  
+	  public static double kelvinToCelsius (double temp) {
+		  
+		  double newTemp = temp - 273.15;
+		  return newTemp;
+		  
+	  }
 
+	  public static String setCityName() {
+		  
+		  scan = new Scanner(System.in);
+		  System.out.println("Podaj nazwe miasta: ");
+		  String cityName = scan.nextLine();
+		  return cityName;
+		  
+	  }
 	  
 	
 	
